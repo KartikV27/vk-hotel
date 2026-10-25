@@ -1,0 +1,140 @@
+<section id="menu" class="menu-section section-padding" aria-label="Evening Tiffin Menu">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-badge">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2zm0-10h2v8h-2z"/>
+        </svg>
+        {{ t.menu.badge }}
+      </span>
+      <h2 class="section-title">{{ t.menu.title }}</h2>
+      <p class="section-subtitle">{{ t.menu.subtitle }}</p>
+    </div>
+
+    <!-- Category Tabs & Veg Filter Controls -->
+    <div class="menu-controls-wrapper">
+      <!-- Category Tabs (Horizontal Scrollable on Mobile) -->
+      <div class="category-tabs" role="tablist" aria-label="Menu Categories">
+        <button
+          type="button"
+          role="tab"
+          class="cat-tab"
+          [class.active]="selectedCategory() === 'all'"
+          (click)="selectCategory('all')"
+          [attr.aria-selected]="selectedCategory() === 'all'">
+          <span>{{ t.menu.allCategory }}</span>
+        </button>
+
+        @for (cat of categories; track cat.key) {
+          <button
+            type="button"
+            role="tab"
+            class="cat-tab"
+            [class.active]="selectedCategory() === cat.key"
+            (click)="selectCategory(cat.key)"
+            [attr.aria-selected]="selectedCategory() === cat.key">
+            <span>{{ langService.isTamil() ? cat.titleTa : cat.titleEn }}</span>
+          </button>
+        }
+      </div>
+
+      <!-- Veg Only Filter Toggle -->
+      <div class="dietary-filter">
+        <button
+          type="button"
+          class="veg-filter-btn"
+          [class.active]="vegOnlyFilter()"
+          (click)="toggleVegFilter()"
+          [attr.aria-pressed]="vegOnlyFilter()"
+          aria-label="Filter Vegetarian Only">
+          <span class="diet-dot-veg"></span>
+          <span>{{ t.menu.vegOnlyFilter }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Transparent Notice Card regarding Pricing & Preparation -->
+    <div class="menu-notice-card" role="note">
+      <div class="notice-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <p class="notice-text">{{ t.menu.priceNotice }}</p>
+    </div>
+
+    <!-- Menu Grid -->
+    <div class="menu-grid">
+      @for (item of filteredItems(); track item.id) {
+        <article class="food-card" [class.popular]="item.popular">
+          <!-- Food Image Container -->
+          <div class="food-image-frame">
+            <img
+              [src]="item.image"
+              [alt]="langService.isTamil() ? item.nameTa : item.nameEn"
+              class="food-img"
+              loading="lazy" />
+
+            <!-- Dietary Badge (Veg / Non-Veg) -->
+            <div class="diet-badge-wrapper">
+              <span class="diet-badge" [ngClass]="item.isVeg ? 'veg' : 'non-veg'">
+                <span class="diet-dot"></span>
+                <span>{{ item.isVeg ? t.menu.vegBadge : t.menu.nonVegBadge }}</span>
+              </span>
+            </div>
+
+            <!-- Optional Special Badge -->
+            @if (item.badgeTa || item.badgeEn) {
+              <div class="special-badge">
+                {{ langService.isTamil() ? item.badgeTa : item.badgeEn }}
+              </div>
+            }
+          </div>
+
+          <!-- Food Info Content -->
+          <div class="food-content">
+            <div class="food-title-row">
+              <h3 class="food-name" [attr.lang]="langService.currentLang()">
+                {{ langService.isTamil() ? item.nameTa : item.nameEn }}
+              </h3>
+            </div>
+
+            <p class="food-desc">
+              {{ langService.isTamil() ? item.descriptionTa : item.descriptionEn }}
+            </p>
+
+            <div class="food-card-footer">
+              <!-- Price Display (Price on Request / Verified Sample) -->
+              <div class="price-display">
+                <span class="price-tag">
+                  {{ langService.isTamil() ? item.priceDisplayTa : item.priceDisplayEn }}
+                </span>
+              </div>
+
+              <!-- Counter Availability Label -->
+              <span class="counter-badge">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                {{ t.menu.orderCounter }}
+              </span>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    <!-- Category Empty State -->
+    @if (filteredItems().length === 0) {
+      <div class="empty-menu-state">
+        <p>{{ langService.isTamil() ? 'இந்த பிரிவில் உணவுகள் எதுவும் பொருந்தவில்லை. வடிகட்டியை மாற்றவும்.' : 'No dishes matched this filter. Please reset or choose another category.' }}</p>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="selectCategory('all'); vegOnlyFilter.set(false)">
+          {{ langService.isTamil() ? 'அனைத்து உணவுகளையும் காட்டு' : 'Show All Dishes' }}
+        </button>
+      </div>
+    }
+  </div>
+</section>

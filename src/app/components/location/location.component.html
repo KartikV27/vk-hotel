@@ -1,0 +1,129 @@
+<section id="location" class="location-section section-padding" aria-label="Location and Directions">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-badge">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+        </svg>
+        {{ t.location.badge }}
+      </span>
+      <h2 class="section-title">{{ t.location.title }}</h2>
+      <p class="section-subtitle">{{ t.location.subtitle }}</p>
+    </div>
+
+    <div class="location-grid">
+      <!-- Left Column: Details Cards -->
+      <div class="location-details-col">
+        <!-- Address Card -->
+        <div class="detail-card">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="detail-body">
+            <h4 class="detail-title">{{ t.location.addressTitle }}</h4>
+            <p class="address-text">
+              <strong>{{ langService.isTamil() ? config.location.streetTa : config.location.streetEn }}</strong><br>
+              {{ langService.isTamil() ? config.location.villageTa : config.location.villageEn }}, {{ langService.isTamil() ? config.location.districtTa : config.location.districtEn }} {{ config.location.pincode }}<br>
+              {{ langService.isTamil() ? config.location.stateTa : config.location.stateEn }}
+            </p>
+
+            <button type="button" class="copy-btn" (click)="copyAddress()" [class.copied]="copied()">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>{{ copied() ? t.location.copiedText : t.location.copyAddressBtn }}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hours & Tiffin Schedule -->
+        <div class="detail-card">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="detail-body">
+            <h4 class="detail-title">{{ t.location.timingTitle }}</h4>
+            <p class="timing-highlight">{{ t.location.timingDesc }}</p>
+            <p class="detail-subtext">{{ t.location.timingNote }}</p>
+          </div>
+        </div>
+
+        <!-- Landmark & Transit Info -->
+        <div class="detail-card">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <div class="detail-body">
+            <h4 class="detail-title">{{ t.location.landmarksTitle }}</h4>
+            <p class="detail-subtext">{{ t.location.landmarksDesc }}</p>
+            <span class="gps-tag">
+              <strong>{{ t.location.gpsTitle }}:</strong> {{ t.location.gpsValue }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Direct Directions CTA button -->
+        <a
+          [href]="config.location.googleMapsUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-directions full-width"
+          aria-label="Open in Google Maps">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.3">
+            <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+          </svg>
+          <span>{{ t.location.openMapsBtn }}</span>
+        </a>
+      </div>
+
+      <!-- Right Column: Interactive Embedded Map / Map Card -->
+      <div class="location-map-col">
+        <div class="map-card-wrapper">
+          <div class="map-frame">
+            <iframe
+              [src]="mapEmbedUrl"
+              title="V.K Hotel Karadichittur Google Map Location"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <!-- Bottom Map Card Info Overlay -->
+          <div class="map-card-footer">
+            <div class="hotel-pin-info">
+              <div class="pin-symbol">📍</div>
+              <div class="pin-text">
+                <span class="pin-title">{{ langService.isTamil() ? config.nameTa : config.nameEn }}</span>
+                <span class="pin-address">{{ langService.isTamil() ? (config.location.streetTa + ', ' + config.location.pincode) : (config.location.streetEn + ', ' + config.location.pincode) }}</span>
+              </div>
+            </div>
+            <a
+              [href]="config.location.googleMapsUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-accent btn-sm">
+              {{ t.nav.getDirections }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

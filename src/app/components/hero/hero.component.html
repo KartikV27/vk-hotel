@@ -1,0 +1,165 @@
+<section id="home" class="hero-section" aria-label="Hero Introduction">
+  <div class="container hero-container">
+    <div class="hero-grid">
+      <!-- Left Column: Copy & CTAs -->
+      <div class="hero-content">
+        <!-- Service Label Badge -->
+        <div class="hero-badge-pill" role="note">
+          <span class="badge-dot"></span>
+          <span class="badge-text-primary">
+            {{ langService.isTamil() ? config.serviceTypeTa : config.serviceTypeEn }}
+          </span>
+        </div>
+
+        <!-- Main Headline in Active Language -->
+        <div class="hero-headlines">
+          @if (langService.isTamil()) {
+            <h1 class="hero-primary-headline" lang="ta">
+              {{ t.hero.headline }}
+            </h1>
+          } @else {
+            <h1 class="hero-primary-headline" lang="en">
+              {{ t.hero.headline }}
+            </h1>
+          }
+        </div>
+
+        <!-- Supporting Description in Active Language -->
+        <div class="hero-description-block">
+          <p class="hero-description-text" [attr.lang]="langService.currentLang()">
+            {{ t.hero.subHeadline }}
+          </p>
+        </div>
+
+        <!-- Service Schedule & Walk-in Note -->
+        <div class="hero-schedule-card">
+          <div class="schedule-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="schedule-text">
+            <span class="schedule-title">
+              {{ langService.isTamil() ? config.operatingHoursTa : config.operatingHoursEn }}
+            </span>
+            <span class="schedule-sub">
+              {{ langService.isTamil() ? config.serviceNoteTa : config.serviceNoteEn }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Call-to-Action Buttons -->
+        <div class="hero-cta-group">
+          <!-- Primary CTA: Google Maps Directions -->
+          <a
+            id="hero-btn-directions"
+            [href]="config.location.googleMapsUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-hero"
+            aria-label="Get Directions to VK Hotel on Google Maps">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+            </svg>
+            <span>{{ t.hero.getDirectionsCTA }}</span>
+          </a>
+
+          <!-- Secondary CTA: Explore Menu -->
+          <a
+            id="hero-btn-menu"
+            href="#menu"
+            (click)="scrollToMenu($event)"
+            class="btn btn-secondary btn-hero"
+            aria-label="View Evening Tiffin Menu">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>{{ t.hero.exploreMenuCTA }}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Mouthwatering Food Photography Showcase -->
+      <div class="hero-visual">
+        <div class="visual-card-wrapper">
+          <!-- Main Food Feature Image -->
+          <div class="main-food-frame">
+            <img
+              src="images/hero-feast.jpg"
+              alt="South Indian evening tiffin feast featuring hot layered porotta, crispy roast dosai, soft chapathi, and traditional salna on a fresh banana leaf at VK Hotel Karadichittur"
+              class="hero-food-img"
+              loading="eager"
+              width="680"
+              height="440" />
+
+            <!-- Floating Pill 1: Layered Porotta & Salna -->
+            <div class="floating-badge badge-top-right">
+              <span class="float-emoji">🫓</span>
+              <div class="float-text">
+                <span class="float-title">{{ langService.isTamil() ? 'சுடச்சுட பரோட்டா' : 'Hot Layered Porotta' }}</span>
+                <span class="float-sub">{{ langService.isTamil() ? 'மணக்கும் சால்னாவுடன்' : 'Served with Salna' }}</span>
+              </div>
+            </div>
+
+            <!-- Floating Pill 2: Crispy Dosai & Chutney -->
+            <div class="floating-badge badge-bottom-left">
+              <span class="float-emoji">🥞</span>
+              <div class="float-text">
+                <span class="float-title">{{ langService.isTamil() ? 'மொறுமொறு தோசை' : 'Crispy Dosai' }}</span>
+                <span class="float-sub">{{ langService.isTamil() ? 'தேங்காய் & கார சட்னி' : 'Chutneys & Sambar' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Village Location Strip -->
+          <div class="hero-location-strip">
+            <div class="loc-pin">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+              </svg>
+            </div>
+            <span class="loc-text">
+              {{ langService.isTamil() ? 'கரடிசித்தூர் மெயின் ரோடு, தமிழ்நாடு 606207' : 'Karadichittur Main Road, Tamil Nadu 606207' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Highlights Bar below Hero -->
+    <div class="hero-highlights-bar">
+      <div class="highlight-item">
+        <div class="hl-icon">🔥</div>
+        <div class="hl-content">
+          <h4>{{ t.hero.highlight1 }}</h4>
+          <p>{{ t.hero.highlight1Desc }}</p>
+        </div>
+      </div>
+
+      <div class="highlight-divider"></div>
+
+      <div class="highlight-item">
+        <div class="hl-icon">🍲</div>
+        <div class="hl-content">
+          <h4>{{ t.hero.highlight2 }}</h4>
+          <p>{{ t.hero.highlight2Desc }}</p>
+        </div>
+      </div>
+
+      <div class="highlight-divider"></div>
+
+      <div class="highlight-item">
+        <div class="hl-icon">🌿</div>
+        <div class="hl-content">
+          <h4>{{ t.hero.highlight3 }}</h4>
+          <p>{{ t.hero.highlight3Desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
