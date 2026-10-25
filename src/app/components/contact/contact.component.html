@@ -1,0 +1,83 @@
+<section id="contact" class="contact-section section-padding" aria-label="Contact and Visits">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-badge">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        {{ t.contact.badge }}
+      </span>
+      <h2 class="section-title">{{ t.contact.title }}</h2>
+      <p class="section-subtitle">{{ t.contact.subtitle }}</p>
+    </div>
+
+    <div class="contact-card-main">
+      <div class="contact-grid">
+        <!-- Walk-in Welcome Notice -->
+        <div class="walkin-welcome-box">
+          <div class="welcome-header">
+            <div class="welcome-icon">🏡</div>
+            <div class="welcome-title-wrap">
+              <h3 class="welcome-title">{{ langService.isTamil() ? 'நேரடி வருகை அன்போடு வரவேற்கப்படுகிறது!' : 'Walk-in Customers Are Warmly Welcome!' }}</h3>
+              <span class="welcome-sub">{{ langService.isTamil() ? config.location.fullAddressTa : config.location.fullAddressEn }}</span>
+            </div>
+          </div>
+
+          <p class="walkin-notice-text">{{ t.contact.walkinNotice }}</p>
+
+          <!-- Buttons displayed ONLY if phone number or WhatsApp is configured in restaurant-config.ts -->
+          @if (config.contact.phoneNumber || config.contact.whatsappNumber) {
+            <div class="contact-action-buttons">
+              @if (config.contact.phoneNumber) {
+                <a [href]="'tel:' + config.contact.phoneNumber" class="btn btn-primary">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>{{ t.contact.callBtn }}</span>
+                </a>
+              }
+
+              @if (config.contact.whatsappNumber) {
+                <a [href]="'https://wa.me/' + config.contact.whatsappNumber" target="_blank" rel="noopener noreferrer" class="btn btn-accent">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/>
+                  </svg>
+                  <span>{{ t.contact.whatsappBtn }}</span>
+                </a>
+              }
+            </div>
+          } @else {
+            <div class="direct-visit-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>{{ langService.isTamil() ? 'நேரடியாக கரடிசித்தூர் கடைக்கு வந்து சுடச்சுட சாப்பிட்டு மகிழுங்கள்!' : 'Visit our shop on Karadichittur Main Road to enjoy freshly made evening tiffin.' }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Two Village Eatery Feature Cards -->
+        <div class="contact-features-col">
+          <div class="feature-tile">
+            <div class="tile-icon">📦</div>
+            <div class="tile-text">
+              <h4>{{ t.contact.parcelTitle }}</h4>
+              <p>{{ t.contact.parcelDesc }}</p>
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="tile-icon">🏍️</div>
+            <div class="tile-text">
+              <h4>{{ t.contact.parkingTitle }}</h4>
+              <p>{{ t.contact.parkingDesc }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,103 @@
+<section id="about" class="about-section section-padding" aria-label="About VK Hotel">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Left Column: Village Tiffin Visual Showcase -->
+      <div class="about-visual">
+        <div class="about-image-card">
+          <div class="image-wrapper">
+            <img
+              src="images/hero-feast.jpg"
+              alt="South Indian evening tiffin feast featuring hot layered porotta, crispy roast dosai, soft chapathi, and traditional salna on a fresh banana leaf"
+              class="about-img"
+              loading="lazy"
+              width="680"
+              height="468" />
+          </div>
+
+          <!-- Highlight Pill on image -->
+          <div class="about-float-badge">
+            <div class="float-icon">🌙</div>
+            <div class="float-details">
+              <span class="float-main">{{ langService.isTamil() ? 'கரடிசித்தூர் இரவு டிபன்' : 'Karadichittur Night Tiffin' }}</span>
+              <span class="float-sub">{{ langService.isTamil() ? 'பாரம்பரிய கிராமத்து சுவை' : 'Authentic Village Tiffin' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Experience Badges -->
+        <div class="about-stats-grid">
+          <div class="stat-card">
+            <span class="stat-num">{{ t.about.stat1Number }}</span>
+            <span class="stat-lbl">{{ t.about.stat1Label }}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">{{ t.about.stat2Number }}</span>
+            <span class="stat-lbl">{{ t.about.stat2Label }}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">{{ t.about.stat3Number }}</span>
+            <span class="stat-lbl">{{ t.about.stat3Label }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Bilingual Friendly Introduction -->
+      <div class="about-content">
+        <span class="section-badge">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+          </svg>
+          {{ t.about.badge }}
+        </span>
+
+        <h2 class="about-title">{{ t.about.title }}</h2>
+
+        <div class="about-paragraphs">
+          <p class="about-p about-p-highlight">{{ t.about.p1 }}</p>
+          <p class="about-p">{{ t.about.p2 }}</p>
+          <p class="about-p">{{ t.about.p3 }}</p>
+        </div>
+
+        <!-- 3 Feature Pillars -->
+        <div class="about-pillars">
+          <div class="pillar-item">
+            <div class="pillar-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <h4>{{ t.about.pillar1Title }}</h4>
+              <p>{{ t.about.pillar1Desc }}</p>
+            </div>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <h4>{{ t.about.pillar2Title }}</h4>
+              <p>{{ t.about.pillar2Desc }}</p>
+            </div>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <h4>{{ t.about.pillar3Title }}</h4>
+              <p>{{ t.about.pillar3Desc }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

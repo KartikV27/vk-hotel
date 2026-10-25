@@ -1,0 +1,89 @@
+<footer class="site-footer" aria-label="Site Footer">
+  <div class="container footer-container">
+    <div class="footer-top-grid">
+      <!-- Col 1: Hotel Name & Description -->
+      <div class="footer-brand-col">
+        <div class="footer-logo">
+          <img
+            src="logo/logo-dark.svg"
+            alt="V.K Hotel — வி.கே ஹோட்டல் | Karadichittur Night Tiffin"
+            class="footer-logo-img"
+            width="240"
+            height="46" />
+        </div>
+
+        <p class="footer-tagline">{{ t.footer.tagline }}</p>
+
+        <div class="footer-timing-badge">
+          <span class="timing-dot"></span>
+          <span>{{ langService.isTamil() ? config.operatingHoursTa : config.operatingHoursEn }}</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation Links -->
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">{{ t.footer.quickLinks }}</h4>
+        <ul class="footer-menu-list">
+          <li><a href="#home" (click)="scrollToSection('home', $event)">{{ t.nav.home }}</a></li>
+          <li><a href="#menu" (click)="scrollToSection('menu', $event)">{{ t.nav.menu }}</a></li>
+          <li><a href="#about" (click)="scrollToSection('about', $event)">{{ t.nav.about }}</a></li>
+          <li><a href="#location" (click)="scrollToSection('location', $event)">{{ t.nav.location }}</a></li>
+          <li><a href="#contact" (click)="scrollToSection('contact', $event)">{{ t.nav.contact }}</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Tiffin Categories -->
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">{{ t.footer.tiffinCategories }}</h4>
+        <ul class="footer-menu-list">
+          @for (cat of categories; track cat.key) {
+            <li>
+              <a href="#menu" (click)="scrollToSection('menu', $event)">
+                {{ langService.isTamil() ? cat.titleTa : cat.titleEn }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Col 4: Location & Directions -->
+      <div class="footer-location-col">
+        <h4 class="footer-col-title">{{ t.footer.locationHeading }}</h4>
+        <p class="footer-address-text">
+          {{ langService.isTamil() ? config.location.fullAddressTa : config.location.fullAddressEn }}
+        </p>
+
+        <a
+          [href]="config.location.googleMapsUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-accent btn-sm footer-maps-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.3">
+            <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+          </svg>
+          <span>{{ t.nav.getDirections }}</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Line -->
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-left">
+        <p class="copyright-text">
+          &copy; {{ currentYear }} <strong>{{ langService.isTamil() ? 'வி.கே ஹோட்டல்' : 'V.K Hotel' }}</strong>. {{ t.footer.copyright }}
+        </p>
+        <p class="community-text">{{ t.footer.localCommunity }}</p>
+      </div>
+
+      <div class="footer-bottom-right">
+        <!-- Back to Top Button -->
+        <button type="button" class="back-to-top-btn" (click)="scrollToTop($event)" aria-label="Back to Top">
+          <span>{{ t.footer.backToTop }}</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
