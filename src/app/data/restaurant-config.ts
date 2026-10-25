@@ -39,7 +39,7 @@ export const RESTAURANT_CONFIG: RestaurantConfig = {
     stateTa: 'இந்தியா',
     fullAddressEn: 'Karadichittur Main Road, Karadichittur, Tamil Nadu 606207, India',
     fullAddressTa: 'கரடிசித்தூர் மெயின் ரோடு, கரடிசித்தூர், தமிழ்நாடு 606207, இந்தியா',
-    googleMapsUrl: 'https://www.google.com/maps/place/V.k+Hotel/@11.8260004,78.8742624,16.75z/data=!4m6!3m5!1s0x3bab63cd567cae63:0xf87362ce2d673c6f!8m2!3d11.8285938!4d78.8757887',
+    googleMapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=11.8285938,78.8757887',
     latitude: 11.8285938,
     longitude: 78.8757887
   },
